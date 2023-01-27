@@ -40,7 +40,7 @@ public class Endereco {
     @Column(name="ST_ENDERECO_PRINCIPAL")
     private String enderecoPrincipal;
 
-    public String isEnderecoPrincipal(Boolean enderecoPrincipal) {
+    public String converteEnderecoPrincipalParaString(Boolean enderecoPrincipal) {
         return enderecoPrincipal ? "S" : "N";
     }
 }

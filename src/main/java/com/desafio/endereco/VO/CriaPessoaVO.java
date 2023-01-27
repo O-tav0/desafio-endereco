@@ -14,4 +14,5 @@ import java.util.Date;
 public class CriaPessoaVO {
     private String nome;
     private Date dataNascimento;
+    private EnderecoVO endereco;
 }

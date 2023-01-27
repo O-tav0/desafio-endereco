@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnderecoVO {
-    private String logradouro;
-    private String cep;
-    private Integer numero;
-    private String cidade;
+public class AtualizaPessoaVO {
+    String nome;
+    Date dataNascimento;
 }
