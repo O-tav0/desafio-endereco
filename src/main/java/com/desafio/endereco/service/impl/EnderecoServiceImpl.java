@@ -3,6 +3,8 @@ package com.desafio.endereco.service.impl;
 import com.desafio.endereco.VO.EnderecoVO;
 import com.desafio.endereco.entity.Endereco;
 import com.desafio.endereco.entity.Pessoa;
+import com.desafio.endereco.enums.DominioEnderecoPrincipal;
+import com.desafio.endereco.enums.EnumDominioEnderecoPrincipal;
 import com.desafio.endereco.repository.EnderecoRepository;
 import com.desafio.endereco.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Override
     public Endereco buscarEnderecoPrincipalPessoa(Long idPessoa) {
         Pessoa pessoa = pessoaService.buscarPessoaPeloId(idPessoa);
-        return enderecoRepository.findByPessoaAndEnderecoPrincipal(pessoa, "S");
+        return enderecoRepository.findByPessoaAndEnderecoPrincipal(pessoa, new DominioEnderecoPrincipal(EnumDominioEnderecoPrincipal.SIM).getValorEmPortugues());
     }
 
 
@@ -44,9 +46,9 @@ public class EnderecoServiceImpl implements EnderecoService {
         novoEndereco.setNumero(vo.getNumero());
 
         if(existeEnderecoPrincipalParaPessoa(idPessoa)) {
-            novoEndereco.setEnderecoPrincipal(novoEndereco.converteEnderecoPrincipalParaString(false));
+            novoEndereco.setEnderecoPrincipal(new DominioEnderecoPrincipal(EnumDominioEnderecoPrincipal.NAO).getValorEmPortugues());
         } else {
-            novoEndereco.setEnderecoPrincipal(novoEndereco.converteEnderecoPrincipalParaString(true));
+            novoEndereco.setEnderecoPrincipal(new DominioEnderecoPrincipal(EnumDominioEnderecoPrincipal.SIM).getValorEmPortugues());
         }
 
         return novoEndereco;
@@ -58,7 +60,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
         if(pessoa.getEnderecos() != null) {
             for(Endereco endereco: pessoa.getEnderecos()) {
-                if(endereco.getEnderecoPrincipal().equals("S")) {
+                if(endereco.getEnderecoPrincipal().equals(new DominioEnderecoPrincipal(EnumDominioEnderecoPrincipal.SIM).getValorEmPortugues())) {
                     existeEnderecoPrincipal = true;
                 }
             }

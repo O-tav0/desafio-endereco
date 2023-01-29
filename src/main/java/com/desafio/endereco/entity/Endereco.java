@@ -1,5 +1,7 @@
 package com.desafio.endereco.entity;
 
+import com.desafio.endereco.enums.DominioEnderecoPrincipal;
+import com.desafio.endereco.enums.EnumDominioEnderecoPrincipal;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,8 +41,4 @@ public class Endereco {
 
     @Column(name="ST_ENDERECO_PRINCIPAL")
     private String enderecoPrincipal;
-
-    public String converteEnderecoPrincipalParaString(Boolean enderecoPrincipal) {
-        return enderecoPrincipal ? "S" : "N";
-    }
 }
